@@ -6,7 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Root Config</title>
 		<script src="http://localhost:7500/modules/regenerator-runtime/v0.13.7/runtime.min.js"></script>
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:* ws://192.168.1.98:*; style-src 'unsafe-inline' https:; object-src 'none';" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:* ws://192.168.1.98:*; style-src 'unsafe-inline' https:; object-src 'none'; img-src * 'self' data: https:;" />
 		<meta name="importmap-type" content="systemjs-importmap" />
 		<script type="systemjs-importmap">
 			{
@@ -18,16 +18,15 @@
 
 		<link rel="preload" href="http://localhost:7500/modules/single-spa/v5.9.0/single-spa.min.js" as="script">
 
+        <!-- 本地开发启动时 -->
 		<% if (isLocal) { %>
+            <!-- 依赖 -->
 			<script type="systemjs-importmap">
 				{
-					"imports": {
-						"react": "http://localhost:7500/modules/react/v17.0.2/react.production.min.js",
-						"react-dom": "http://localhost:7500/modules/react-dom/v17.0.2/umd/react-dom.production.min.js",
-						"antd": "https://unpkg.com/browse/antd@4.22.7/dist/antd-with-locales.js"
-					}
+					"imports": {}
 				}
 			</script>
+            <!-- 应用 -->
 			<script type="systemjs-importmap">
 				{
 					"imports": {
@@ -43,11 +42,11 @@
 		<script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
 
 		<% if (isLocal) { %>
-			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+			<script src="http://localhost:7500/modules/systemjs/v6.8.3/system.js"></script>
+			<script src="http://localhost:7500/modules/systemjs/v6.8.3/extras/amd.js"></script>
 		<% } else { %>
-			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+			<script src="http://localhost:7500/modules/systemjs/v6.8.3/system.min.js"></script>
+			<script src="http://localhost:7500/modules/systemjs/v6.8.3/extras/amd.min.js"></script>
 		<% } %>
 
 		<style>
