@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Root Config</title>
+		<script src="http://localhost:7500/modules/regenerator-runtime/v0.13.7/runtime.min.js"></script>
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:* ws://192.168.1.98:*; style-src 'unsafe-inline' https:; object-src 'none';" />
+		<meta name="importmap-type" content="systemjs-importmap" />
+		<script type="systemjs-importmap">
+			{
+				"imports": {
+					"single-spa": "http://localhost:7500/modules/single-spa/v5.9.0/single-spa.min.js"
+				}
+			}
+		</script>
+
+		<link rel="preload" href="http://localhost:7500/modules/single-spa/v5.9.0/single-spa.min.js" as="script">
+
+		<% if (isLocal) { %>
+			<script type="systemjs-importmap">
+				{
+					"imports": {
+						"react": "http://localhost:7500/modules/react/v17.0.2/react.production.min.js",
+						"react-dom": "http://localhost:7500/modules/react-dom/v17.0.2/umd/react-dom.production.min.js",
+						"antd": "https://unpkg.com/browse/antd@4.22.7/dist/antd-with-locales.js"
+					}
+				}
+			</script>
+			<script type="systemjs-importmap">
+				{
+					"imports": {
+						"@core/root-config": "//localhost:9000/core-root-config.js",
+						"@base/user": "http://localhost:8600/js/app.js",
+						"@system/navbar": "http://localhost:8701/js/app.js",
+						"@system/header": "http://localhost:8700/js/app.js"
+					}
+				}
+			</script>
+		<% } %>
+
+		<script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+
+		<% if (isLocal) { %>
+			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+		<% } else { %>
+			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+		<% } %>
+
+		<style>
+            html, body {
+                margin: 0;
+                height: 100%;
+            }
+
+			main.root-page-main {
+				display: flex;
+                height: calc(100% - 60px);
+			}
+
+			nav.root-page-nav {
+                flex: 2;
+                border-right: solid 1px var(--el-menu-border-color);
+			}
+
+            nav.root-page-nav .navbar {
+                border: none;
+            }
+			
+			.root-page-show {
+				flex: 14;
+			}
+		</style>
+	</head>
+
+	<body>
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<script>System.import('@core/root-config');</script>
+		<import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+	</body>
+</html>

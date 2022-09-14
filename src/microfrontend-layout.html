@@ -1,0 +1,18 @@
+<single-spa-router>
+  <header class="root-page-header">
+    <application name="@system/header"></application>
+  </header>
+  <main class="root-page-main">
+    <nav class="root-page-nav">
+      <application name="@system/navbar"></application>
+    </nav>
+    <div class="root-page-show">
+      <route default>
+        <application name="@base/user"></application>
+      </route>
+      <!-- <route path="settings">
+        <application name="@manager/user"></application>
+      </route> -->
+    </div>
+  </main>
+</single-spa-router>
